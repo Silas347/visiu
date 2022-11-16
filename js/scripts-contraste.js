@@ -1,9 +1,11 @@
 let luminanciaRelativaCor1 = 0;
 let luminanciaRelativaCor2 = 0;
+let cor1;
+let cor2;
 
 window.onload = function () {
-  const cor1 = document.getElementById("cor1").value;
-  const cor2 = document.getElementById("cor2").value;
+  cor1 = document.getElementById("cor1").value;
+  cor2 = document.getElementById("cor2").value;
   document.getElementById("textoPequeno").style.color = cor1;
   document.getElementById("textoGrande").style.color = cor1;
   document.getElementById("compGraficos").style.color = cor1;
@@ -18,13 +20,12 @@ window.onload = function () {
     0.2126 * luminanciaRelativa(hexToRgb(cor2).r) +
     0.7152 * luminanciaRelativa(hexToRgb(cor2).g) +
     0.0722 * luminanciaRelativa(hexToRgb(cor2).b);
-  validaContraste(
-    (luminanciaRelativaCor2 + 0.05) / (luminanciaRelativaCor1 + 0.05)
-  );
+  validaContraste(luminanciaRelativaCor1, luminanciaRelativaCor2);
 };
 
 document.getElementById("cor1").addEventListener("change", function (e) {
   mudaCor1(e.target.value);
+  cor1 = e.target.value;
 });
 
 function mudaCor1(e) {
@@ -35,13 +36,12 @@ function mudaCor1(e) {
     0.2126 * luminanciaRelativa(hexToRgb(e).r) +
     0.7152 * luminanciaRelativa(hexToRgb(e).g) +
     0.0722 * luminanciaRelativa(hexToRgb(e).b);
-  validaContraste(
-    (luminanciaRelativaCor2 + 0.05) / (luminanciaRelativaCor1 + 0.05)
-  );
+  validaContraste(luminanciaRelativaCor1, luminanciaRelativaCor2);
 }
 
 document.getElementById("cor2").addEventListener("change", function (e) {
   mudaCor2(e.target.value);
+  cor2 = e.target.value;
 });
 
 function mudaCor2(e) {
@@ -52,9 +52,7 @@ function mudaCor2(e) {
     0.2126 * luminanciaRelativa(hexToRgb(e).r) +
     0.7152 * luminanciaRelativa(hexToRgb(e).g) +
     0.0722 * luminanciaRelativa(hexToRgb(e).b);
-  validaContraste(
-    (luminanciaRelativaCor2 + 0.05) / (luminanciaRelativaCor1 + 0.05)
-  );
+  validaContraste(luminanciaRelativaCor1, luminanciaRelativaCor2);
 }
 
 function hexToRgb(hex) {
@@ -81,15 +79,29 @@ function luminanciaRelativa(letraC) {
 }
 
 document.getElementById("botaoInverte").addEventListener("click", function () {
-  const cor1 = document.getElementById("cor1").value;
-  const cor2 = document.getElementById("cor2").value;
-  document.getElementById("cor1").value = cor2;
-  document.getElementById("cor2").value = cor1;
-  mudaCor1(cor2);
-  mudaCor2(cor1);
+  const tempCor1 = document.getElementById("cor1").value;
+  const tempCor2 = document.getElementById("cor2").value;
+  document.getElementById("cor1").value = tempCor2;
+  document.getElementById("cor2").value = tempCor1;
+  cor1 = tempCor2;
+  cor2 = tempCor1;
+  mudaCor1(tempCor2);
+  mudaCor2(tempCor1);
 });
 
-function validaContraste(contraste) {
+function validaContraste(luminanciaRelativaCor1, luminanciaRelativaCor2) {
+  const hspCor1 = hsp(cor1);
+  const hspCor2 = hsp(cor2);
+  let contraste;
+
+  if (hspCor1 <= hspCor2) {
+    contraste =
+      (luminanciaRelativaCor2 + 0.05) / (luminanciaRelativaCor1 + 0.05);
+  } else {
+    contraste =
+      (luminanciaRelativaCor1 + 0.05) / (luminanciaRelativaCor2 + 0.05);
+  }
+
   if (contraste < 3) {
     document.getElementById("textoGrandeValida").innerHTML =
       "Texto Grande <i class='bi bi-exclamation-circle'></i>";
@@ -115,4 +127,26 @@ function validaContraste(contraste) {
       "Componentes Gráficos";
     document.getElementById("proporcaoContraste").innerHTML = `${contraste}`;
   }
+}
+
+function hsp(color) {
+  var r, g, b, hsp;
+
+  if (color.match(/^rgb/)) {
+    color = color.match(/^rgba?((\d+),\s(\d+),\s(\d+)(?:,\s(\d+(?:.\d+)?))?)$/);
+
+    r = color[1];
+    g = color[2];
+    b = color[3];
+  } else {
+    color = +("0x" + color.slice(1).replace(color.length < 5 && /./g, "$&$&"));
+
+    r = color >> 16;
+    g = (color >> 8) & 255;
+    b = color & 255;
+  }
+
+  hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
+
+  return hsp;
 }

@@ -34,8 +34,7 @@
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -55,113 +54,80 @@
       </nav>
       <!-- BODY -->
       <section class="py-7">
-        <div class="container-fluid px-5 my-5">
+        <div class="container-fluid  px-5 my-5">
           <h1 class="pb-2">Contraste Cromático</h1>
-
-          <div class="row gx-3">
-            <div class="col-xl-7">
-              <!-- CAPTAÇÃO DE CORES -->
-              <div class="row mx-2 align-items-center justify-content-between">
-                <div class="col-4">
-                  <label class="form-label"> <b>Cor da Fonte</b> </label>
-                  <input
-                    type="color"
-                    id="cor1"
-                    class="form-control form-control-color"
-                    value="#563d7c"
-                  />
-                </div>
-                <div class="col-4">
-                  <p></p>
-                  <a class="btn btn-dark">
-                    <i id="botaoInverte" class="bi bi-arrow-left-right"></i>
-                  </a>
-                </div>
-                <div class="col-4">
-                  <label class="form-label"> <b>Cor de Fundo</b> </label>
-                  <input
-                    type="color"
-                    id="cor2"
-                    class="form-control form-control-color"
-                    value="#abcdef"
-                  />
-                </div>
-              </div>
-              <!-- RESULTADO PROPORÇÃO DE CONTRASTE-->
-              <div class="row my-5 align-items-center justify-content-between">
-                <label> <b>Proporção de Contraste</b> </label>
+          <div class="row">
+          <div class="col-xl-3 p-5 
+          justify-content-center">
+                <label class="form-label"> <b>Cor da Fonte</b> </label>
+                <input type="color" id="cor1" class="form-control form-control-color" value="#563d7c" />
+                <p></p>
+                <a class="btn btn-dark align-items-center">
+                  <i id="botaoInverte" class="bi bi-arrow-left-right"></i>
+                </a>
+                <p></p>
+                <label class="form-label"> <b>Cor de Fundo</b> </label>
+                <input type="color" id="cor2" class="form-control form-control-color" value="#abcdef" />
+          </div>
+          <div class="col-xl-4 divisao p-5 align-items-center">
+            <label> <b>Proporção de Contraste</b> </label>
                 <p></p>
                 <h3>
                   <span id="proporcaoContraste"></span>
                 </h3>
-              </div>
-            </div>
-            <!-- RESULTADOS ELEMENTOS-->
-            <div class="col-xl-5">
-              <div class="row">
-                <div class="p-3">
-                  <!--  -->
-                  <div class="card shadow mb-3">
-                    <div class="card-header bg-dark">
-                      <h6 id="textoGrandeValida" class="m-0 text-light">
-                        Texto Grande
-                      </h6>
-                    </div>
-                    <div id="textoGrande" class="card-body">
-                      Loren ipsum 123
-                    </div>
+          </div>
+          <div class="col-xl-5">
+            <div class="row">
+              <div class="p-3">
+                <!--  -->
+                <div class="card shadow mb-3">
+                  <div class="card-header bg-dark">
+                    <h6 id="textoGrandeValida" class="m-0 text-light">
+                      Texto Grande
+                    </h6>
                   </div>
-                  <div class="card shadow mb-3">
-                    <div class="card-header bg-dark">
-                      <h6 id="textoPequenoValida" class="m-0 text-light">
-                        Texto Pequeno
-                      </h6>
-                    </div>
-                    <div id="textoPequeno" class="card-body">
-                      <p class="txt-pequeno">Loren ipsum 123</p>
-                    </div>
+                  <div id="textoGrande" class="card-body">
+                    Loren ipsum 123
                   </div>
-                  <div class="card shadow mb-3">
-                    <div class="card-header bg-dark">
-                      <h6 id="compGraficoValida" class="m-0 text-light">
-                        Componentes Gráficos
-                      </h6>
-                    </div>
-                    <div id="compGraficos" class="card-body">
-                      <i class="bi bi-circle-fill"></i>
-                      <i class="bi bi-square-fill"></i>
-                      <i class="bi bi-triangle-fill"></i>
-                      <i class="bi bi-hexagon-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-heart-fill"></i>
-                    </div>
+                </div>
+                <div class="card shadow mb-3">
+                  <div class="card-header bg-dark">
+                    <h6 id="textoPequenoValida" class="m-0 text-light">
+                      Texto Pequeno
+                    </h6>
+                  </div>
+                  <div id="textoPequeno" class="card-body">
+                    <p class="txt-pequeno">Loren ipsum 123</p>
+                  </div>
+                </div>
+                <div class="card shadow mb-3">
+                  <div class="card-header bg-dark">
+                    <h6 id="compGraficoValida" class="m-0 text-light">
+                      Componentes Gráficos
+                    </h6>
+                  </div>
+                  <div id="compGraficos" class="card-body">
+                    <i class="bi bi-circle-fill"></i>
+                    <i class="bi bi-square-fill"></i>
+                    <i class="bi bi-triangle-fill"></i>
+                    <i class="bi bi-hexagon-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-heart-fill"></i>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
         </div>
       </section>
     </main>
     <!-- FOOTER-->
     <footer class="bg-dark py-4 mt-auto">
       <div class="container px-5">
-        <div
-          class="row align-items-center justify-content-between flex-column flex-sm-row"
-        >
-          <div class="col-auto">
-            <div class="small m-0 text-white">
+          <div class="text-center text-white">
               Copyright &copy; VIS<b>IU</b> 2022
-            </div>
           </div>
-          <div class="col-auto">
-            <a class="link-light small" href="#!">Privacy</a>
-            <span class="text-white mx-1">&middot;</span>
-            <a class="link-light small" href="#!">Terms</a>
-            <span class="text-white mx-1">&middot;</span>
-            <a class="link-light small" href="#!">Contact</a>
-          </div>
-        </div>
       </div>
     </footer>
     <!-- Bootstrap core JS-->

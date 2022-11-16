@@ -11328,3 +11328,7 @@ html {
 .pad-in{
   padding: 20px;
 }
+
+.divisao{
+  border-left: 4px solid #3D3F43;
+}
